@@ -9,111 +9,444 @@
   <link rel="stylesheet" href="./assets/profil/style.css">
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet"
     integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+  <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.0/css/bootstrap.min.css'>
+  <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css'>
+  <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.theme.default.css'>
+  <link rel="stylesheet" href="./assets/portofolio/style.css">
+  <!-- <link rel="stylesheet" href="./assets/header/style.css"> -->
   <style>
-    body {
-      font-size: 14px;
-      margin: 0;
-      padding: 0;
-      font-family: Arial, sans-serif;
-    }
-
-    .main-container {
-      padding: 20px;
-    }
-
-    .header {
-      text-align: center;
-      margin-bottom: 20px;
-    }
-
-    .swiper-container {
+    .preloader-container {
+      position: fixed;
+      top: 0;
+      left: 0;
       width: 100%;
-      padding-top: 20px;
+      height: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      z-index: 1000;
+      opacity: 1;
+      animation: fadeOut 1s ease-in-out 3s forwards, blur 3s ease-in-out;
+      pointer-events: none;
+      /* Tidak menghalangi interaksi dengan elemen di bawahnya */
     }
 
-    .slide-content {
-      padding: 20px;
-      background-color: #f5f5f5;
-      border-radius: 10px;
-      margin: 10px;
-    }
-
-    .bg {
-      max-width: 100%;
-      height: auto;
-    }
-
-    @media (max-width: 768px) {
-      .header h1 {
-        font-size: 24px;
+    /* Efek blur */
+    @keyframes blur {
+      0% {
+        backdrop-filter: blur(10px);
       }
 
-      .swiper-slide {
-        text-align: center;
+      100% {
+        backdrop-filter: blur(0);
+      }
+    }
+
+    /* Gaya preloader */
+    .preloader {
+      width: 500px;
+      height: 350px;
+      animation: spin 3s linear infinite, fadeOut 1s ease 3s forwards;
+    }
+
+    /* Gaya animasi fadeOut */
+    @keyframes fadeOut {
+      from {
+        opacity: 1;
+      }
+
+      to {
+        opacity: 0;
+      }
+    }
+
+    /* Reset beberapa gaya default */
+    body,
+    html {
+      margin: 0;
+      padding: 0;
+    }
+
+    /* Gaya dasar footer */
+    footer {
+      background-color: #303030;
+      color: #fff;
+      text-align: center;
+      padding: 20px 0;
+    }
+
+    /* Gaya kontainer footer */
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    /* Gaya teks hak cipta */
+    p {
+      margin: 0;
+    }
+
+    /* Gaya tautan pada footer jika dibutuhkan */
+    a {
+      color: #fff;
+      text-decoration: none;
+    }
+
+    a:hover {
+      text-decoration: underline;
+    }
+
+    /* Gaya header */
+    header {
+      background-color: rgba(255, 255, 255, 0.413);
+      color: #0f0f0f;
+      padding: 30px 0;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 80px;
+      z-index: 1000;
+      backdrop-filter: blur(0px);
+    }
+
+    /* Gaya logo */
+    .logo a {
+      font-size: 24px;
+      text-decoration: none;
+      font-weight: bold;
+      margin-left: 30px;
+    }
+
+    /* Gaya menu hamburger */
+    .hamburger {
+      display: none;
+      flex-direction: column;
+      cursor: pointer;
+    }
+
+    .line {
+      width: 25px;
+      height: 3px;
+      background-color: #0f0f0f;
+      margin: 3px 0;
+    }
+
+    /* Gaya navigasi */
+    nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 20px;
+    }
+
+    .nav-links {
+      list-style: none;
+      display: flex;
+      gap: 20px;
+    }
+
+    .nav-links li a {
+      color: #0a0a0a;
+      text-decoration: none;
+    }
+
+    /* Gaya saat mengarahkan kursor ke tautan navigasi */
+    .nav-links li a:hover {
+      text-decoration: underline;
+    }
+
+    /* Responsif */
+    @media screen and (max-width: 768px) {
+      .logo {
+        margin: 0;
+      }
+
+      .nav-links {
+        display: none;
+        flex-direction: column;
+        position: absolute;
+        top: 80px;
+        left: 0;
+        background-color: rgba(255, 255, 255, 0.322);
+        width: 100%;
+        padding: 10px;
+      }
+
+      .nav-links.active {
+        display: flex;
+      }
+
+      .hamburger {
+        display: flex;
       }
     }
   </style>
+
 </head>
 
-<body>
-  <!-- partial:index.partial.html -->
-  <div class="main-container">
-    <main>
-      <div>
-        <span>discover</span>
-        <h1>Moh. Fiqih Erinsyah, S.Tr.Kom</h1>
-        <hr>
-        <p>Beauty and mystery are hidden under the sea. Explore with our application to know about Aquatic Animals.</p>
-        <a href="#">Resume Preview</a>
+<body id="about">
+  <!-- Preloader -->
+  <div class="preloader-container">
+    <div class="preloader">
+      <img src="./assets/preloader.gif" alt="Loading...">
+    </div>
+  </div>
+  <header>
+    <nav>
+      <div class="logo">
+
       </div>
-      <div class="swiper">
-        <div class="swiper-wrapper">
-          <div class="swiper-slide swiper-slide--one">
-            <div>
-              <h2>Jellyfish</h2>
-              <p>Jellyfish and sea jellies are the informal common names given to the medusa-phase of certain gelatinous
-                members of the subphylum Medusozoa, a major part of the phylum Cnidaria.</p>
-              <a href="https://en.wikipedia.org/wiki/Jellyfish" target="_blank">explore</a>
-            </div>
-          </div>
-          <div class="swiper-slide swiper-slide--two">
-            <div>
-              <h2>Seahorse</h2>
-              <p>
-                Seahorses are mainly found in shallow tropical and temperate salt water throughout the world. They live
-                in
-                sheltered areas such as seagrass beds, estuaries, coral reefs, and mangroves. Four species are found in
-                Pacific waters from North America to South America.
-              </p>
-              <a href="https://en.wikipedia.org/wiki/Seahorse" target="_blank">explore</a>
-            </div>
-          </div>
+      <div class="hamburger">
+        <div class="line"></div>
+        <div class="line"></div>
+        <div class="line"></div>
+      </div>
+      <ul class="nav-links">
+        <li><a href="#" style="text-decoration: none;">Home</a></li>
+        <li><a href="#about" style="text-decoration: none;">About</a></li>
+        <li><a href="#portofolio" style="text-decoration: none;">Portfolio</a></li>
+        <li><a href="#contact" style="text-decoration: none;">Contact</a></li>
+      </ul>
+    </nav>
+  </header>
 
-          <div class="swiper-slide swiper-slide--three">
-            <div>
-              <h2>octopus</h2>
-              <p>
-                Octopuses inhabit various regions of the ocean, including coral reefs, pelagic waters, and the seabed;
-                some live in the intertidal zone and others at abyssal depths. Most species grow quickly, mature early,
-                and are short-lived.
-              </p>
-              <a href="https://en.wikipedia.org/wiki/Octopus" target="_blank">explore</a>
+  <div class="main-container" style="margin-top: 70px;">
+    <main>
+      <div class="row">
+        <div class="col-md-6">
+          <div>
+            <!-- <span>About</span><br /> -->
+            <h2 class="line-title" style="margin-left: 10px;">About Me</h2>
+            <h4>Moh. Fiqih Erinsyah, S.Tr.Kom</h4>
+            <hr>
+            <p style="text-align: justify;">Hallo, Saya Moh. Fiqih salah satu Freshgraduate konversi dari DIII Teknik
+              Komputer ke
+              DIV Teknik
+              Informatika selama 1 tahun, interest saya dibidang IT, sekarang saya lulus dari Sarjana Terapan di
+              Politeknik
+              Harapan Bersama Kota Tegal. Saya Fullstack Developer, ingin bekerja disalah satu bidang IT yaitu menjadi
+              seorang Web Development. Selain dibidang Web Development saya juga memiliki kemampuan dibidang
+              Python Machine Learning, Flutter dan lainnya.</p>
+            <div class="button-container">
+              <a class="button" target="_blank" href="./assets/cv/cv_mohfiqih.pdf"
+                style="text-decoration: none;">Resume</a>
+              <a class="button" style="margin-left: 8px; text-decoration: none;" href="#portofolio">Portofolio</a>
             </div>
-          </div>
 
+          </div>
         </div>
-        <!-- Add Pagination -->
-        <div class="swiper-pagination"></div>
+        <div class="col-md-6">
+          <div class="swiper">
+            <div class="swiper-wrapper">
+              <div class="swiper-slide swiper-slide--one">
+                <div>
+                  <h2>Politeknik Harapan Bersama</h2>
+                  <p>Saya alumni dari Politeknik Harapan Bersama Kota Tegal, Saya kuliah pertama di Program Studi DIII
+                    Teknik Komputer dan Alih Jenjang Di Sarjana Terapan Teknik Informatika...</p>
+                  <a href="" data-bs-toggle="modal" data-bs-target="#exampleModal"
+                    style="text-decoration: none;">Detail</a>
+
+                </div>
+              </div>
+              <div class="swiper-slide swiper-slide--two">
+                <div>
+                  <h2>DIV Teknik Informatika</h2>
+                  <p>
+                    Melanjutkan studi alih jenjang memanglah hal yang umum, namun karena saya adalah freshgraduate saya
+                    diberikan alih jenjang dengan masa 1 tahun 4 semester...
+                  </p>
+                  <a href="" data-bs-toggle="modal" data-bs-target="#exampleModal2"
+                    style="text-decoration: none;">Detail</a>
+                </div>
+              </div>
+
+              <div class="swiper-slide swiper-slide--three">
+                <div>
+                  <h2>DIII Teknik Komputer</h2>
+                  <p>
+                    Sebelum konversi saya adalah alumni dari DIII Teknik Komputer, banyak experience dan relasi yang
+                    saya
+                    bangun selama saya duduk dibangku Diploma III...
+                  </p>
+                  <a href="" data-bs-toggle="modal" data-bs-target="#exampleModal3"
+                    style="text-decoration: none;">Detail</a>
+                </div>
+              </div>
+
+            </div>
+            <!-- Add Pagination -->
+            <div class="swiper-pagination"></div>
+          </div>
+        </div>
+      </div>
+
+
+      <!-- Modal PopUp -->
+      <!-- PopUp 1 -->
+      <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h1 class="modal-title fs-5" id="exampleModalLabel" style="margin-left: 15px;">Politeknik Harapan Bersama
+              </h1>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+              <p style="text-align: justify;padding: 15px;">Hallo, Saya alumni dari Program Studi Diploma III Teknik
+                Komputer yang saya tempuh dari tahun 2019 - 2022. Saya melanjutkan alih jenjang saya di Program Studi
+                Sarjana Terapan Teknik Informatika selama 1 tahun dari tahun 2022 - 2023. Saya Freshgraduate, dengan IPK
+                saya
+                3,93</p>
+              <center>
+                <div style="background: linear-gradient(to top, #0f2027, #b9baba00, #2c536400);">
+                  <img style="width: 150px;height: 300px;"
+                    src="https://blogger.googleusercontent.com/img/a/AVvXsEhBmI6nq7hREERx2MLADi2BvSCvztuXQZ5CncISmLv6_xNNEB8rs7QE54gbRWNhRBJxS9tr2ODYV0wzp7AclOJxyFHMr6i_xHR3g0Z3T6dYYcI5ZJwASssX0V3bXunkYBrK5chUtCGeU9fbwu2eB_9J-evYpmuTe6HmsoMYCEkuAnwuy7r_MrBZzEsAxOk=w417-h675" />
+                </div>
+              </center><br />
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- PopUp 2 -->
+      <div class="modal fade" id="exampleModal2" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h1 class="modal-title fs-5" id="exampleModalLabel" style="margin-left: 15px;">DIV Teknik Informatika
+              </h1>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+              <p style="text-align: justify;padding: 15px;">
+                Melanjutkan studi alih jenjang memanglah hal yang umum, namun karena saya adalah freshgraduate saya
+                diberikan alih jenjang dengan masa 1 tahun 4 semester, program ini sengaja prodi berikan untuk melatih
+                mahasiswa konversi bisa melaksanakannya dengan baik atau tidak.
+                <br />Saya berhasil melakukan 1 tahun dengan 4 semester, dimana saya harus melewati double semester dan
+                melewati 2x Capstone Project. Saya jalan kuliah di Semester 5 dan 7, serta di semester 6 dan 8.
+                <br /><br />1. Capstone Project Terbaik 1 di semester 5.
+                <br />2. Mampu menyelesaikan 2x double semester
+                <br />3. IPK Terakhir saya 3.93 Predikan Cumlaude
+              </p>
+              <center>
+                <div style="background: linear-gradient(to top, #0f2027, #b9baba00, #2c536400);">
+                  <img style="width: 200px;height: 300px;"
+                    src="https://blogger.googleusercontent.com/img/a/AVvXsEjQ8iHtjMOuP-D_Og84yPm-wFp8gtWsz-JBDbQiWixOZVCI9smwCETeh8jKd8LPryzkno8ni0IdvlNhwPGj8M8EauedlwQ6S7ZDieh81Cl67M4gIK5lvIxjZlvNMRdQT4IVBZ9dPAhzLue46NaRQQLzzyKOeS7QKmv7Hp7-WsawbHgESptP2vTnXUvMOCo=w396-h597" />
+                </div>
+              </center><br />
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- PopUp 3 -->
+      <div class="modal fade" id="exampleModal3" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h1 class="modal-title fs-5" id="exampleModalLabel" style="margin-left: 15px;">DIV Teknik Informatika
+              </h1>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+              <p style="text-align: justify;padding: 15px;">
+                Sebelum konversi saya adalah alumni dari DIII Teknik Komputer, banyak experience dan relasi yang saya
+                bangun selama saya duduk dibangku Diploma III, dan selalu mengikuti berbagai kegiatan dengan dosen.
+                <br />Saya berhasil melakukan 1 tahun dengan 4 semester, dimana saya harus melewati double semester dan
+                melewati 2x Capstone Project. Saya jalan kuliah di Semester 5 dan 7, serta di semester 6 dan 8.
+                <br /><br />1. IPK Terakhir saya 3.92 Predikan Cumlaude
+                <br />2. Tugas Akhir Terbaik
+                <br />3. Aktif kegiatan PKM x Dosen dan Lomba
+                <br />4. Magang di TIK PHB
+              </p>
+              <center>
+                <div style="background: linear-gradient(to top, #0f2027, #b9baba00, #2c536400);">
+                  <img style="width: 200px;height: 300px;"
+                    src="https://blogger.googleusercontent.com/img/a/AVvXsEi_yl1EKYXWF4qqTT-PBZa5eQioivoCK02JU21Sk-3nWZlboGgIcb8gjv6Ou32nqBJQOJh1x5gPYW5bUCx6XZoAZyyPZyZkwoaCnAnlvM10wgUrDMhQqUNr2cT6d0ZIAPWS4DiI0mqExD0cySCxw0mkFnA4mA3OpSJTd1CX4e6xnYWig6R34Gi-HG593jM=w409-h603" />
+                </div>
+              </center><br />
+            </div>
+          </div>
+        </div>
       </div>
       <img src="https://cdn.pixabay.com/photo/2021/11/04/19/39/jellyfish-6769173_960_720.png" alt="" class="bg">
       <img src="https://cdn.pixabay.com/photo/2012/04/13/13/57/scallop-32506_960_720.png" alt="" class="bg2">
     </main>
   </div>
-  <!-- partial -->
+
+  <div class="main-container" id="portofolio">
+    <section class="game-section">
+
+      <h2 class="line-title" style="margin-left: 10px;">Project Experience</h2>
+
+      <div class="owl-carousel custom-carousel owl-theme">
+        <div class="item active"
+          style="background-image:
+          url(https://blogger.googleusercontent.com/img/a/AVvXsEgTnta9DI3FNlOCnTOIHrV22qBKFJYQ849r0ag_pwYJYSMDmiekWkRfHklhu2arRwMMRTo57A-W7Xj5R78wIk-th4dO9fEr6M7hdGRbieaaXWmvZ6PyFzpBq8m3JIRDQ_geJIS9hGH4atz1-snfUwutHmuOI6H1v9HfHeq9wsVWIa_yMg0qBmclnxw64cA);">
+          <div class="item-desc">
+            <h3>Web e-Repo</h3>
+            <p>Web Tugas Akhir ini ditujukan untuk Bidang TIK PHB dalam melakukan proses penilaian evaluasi sistem
+              mereka
+              menggunakan Skala Likert dan Machine Learning Teks Klasifikasi.</p>
+          </div>
+        </div>
+        <div class="item active"
+          style="background-image:
+        url(https://blogger.googleusercontent.com/img/a/AVvXsEj_6H3QDvzeoymLLt1a-ZIuwh1oSllHA367rVJwog2jslKXBsyPL158lpRWJsVYQ8vPTda-szfTW3EkKpjge5ZkA1S5_UGxZZ9Tk2T_ocgV-0147QhsoxYwZI8cad2Pe4racmJGYQuc8Jb-VwEE-3SlCzHf1YBNjKJzE3VwVxG0W-nDXnKKCZ3YHnnlAmY);">
+          <div class="item-desc">
+            <h3>Aplikasi Simolang</h3>
+            <p>Aplikasi ini dibuat menggunakan Framework Flutter dengan bahasa pemrograman Dart. Aplikasi ini
+              terhubung
+              dengan kecerdasan buatan Machine Learning dengan Framework Flask Python</p>
+          </div>
+        </div>
+        <div class="item active"
+          style="background-image:
+          url(https://blogger.googleusercontent.com/img/a/AVvXsEgARiIGhXvq_8XrT1M_LusXLqIFhJcN4k5zsOCbhA_EOEAuubHaYSLUkk7EHUI5_p_7UKNmsND_Sf42A0gceztWjZrhJmetMlnC2p1R7kZuG7c60RMPpVLF0RyBjR1GxrO_QgiDMYaYuiQqY-UseOl5EJdvy78CwLEaydNOoiztKF0y5K4BG2EwgYCK6DQ);">
+          <div class="item-desc">
+            <h3>Aplikasi Movielem</h3>
+            <p>Aplikasi ini dibuat Menggunakan framework Flutter Bahasa pemrograman Dart, dan terhubung dengan
+              Kecerdasan Buatan Deep Learning Audio menggunakan API Flask Python.</p>
+          </div>
+        </div>
+        <div class="item active"
+          style="background-image:
+          url(https://blogger.googleusercontent.com/img/a/AVvXsEju4q1PikrNRfIknGdcMXJFueFfhEyU4ptz6evMAKhAk_dqcOD9oIcNPbHWzMy3RkP_pkriu8z1w4ENXxoGjZ4c76diYRhEx-8EpBVn4Zp2q4KH9qzxnR3Nbpm7hW23siSHtUyGjljHNxqRVhTERH8zw8i_AtLDEd8Z92g4nWgEZvk-qKzjB7cpA-LykF4=w365-h365);">
+          <div class="item-desc">
+            <h3>Website Simolang</h3>
+            <p>Website ini dibuat menggunakan Framework Flask Python dengan bahasa pemrograman Dart. Website ini
+              terhubung
+              dengan kecerdasan buatan Machine Learning.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <footer>
+    <div class="container">
+      <p>&copy; Moh Fiqih 2023. All rights reserved.</p>
+    </div>
+  </footer>
   <script src='https://cdnjs.cloudflare.com/ajax/libs/Swiper/8.4.5/swiper-bundle.min.js'></script>
   <script src="./assets/profil/script.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"
     integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous">
+  </script>
+  <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js'></script>
+  <script src='https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js'></script>
+  <script src="./assets/portofolio/script.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous">
+  </script>
+  <script>
+    const hamburger = document.querySelector('.hamburger');
+    const navLinks = document.querySelector('.nav-links');
+
+    hamburger.addEventListener('click', () => {
+      navLinks.classList.toggle('active');
+    });
   </script>
 </body>
 

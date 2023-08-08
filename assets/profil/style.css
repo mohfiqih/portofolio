@@ -1,4 +1,77 @@
 @import url("https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;500;600&family=Roboto:wght@300;400;500;900&display=swap");
+
+body {
+  font-size: 14px;
+  margin: 0;
+  padding: 0;
+  font-family: Arial, sans-serif;
+}
+
+.main-container {
+  padding: 0px;
+  margin-left: 10px;
+  margin-right: 10px;
+}
+
+.header {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.swiper-container {
+  width: 100%;
+  padding-top: 20px;
+}
+
+.slide-content {
+  padding: 20px;
+  background-color: #f5f5f5;
+  border-radius: 10px;
+  margin: 10px;
+}
+
+
+.button-container {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  margin-top: 20px;
+}
+
+.button {
+  /* display: inline-block; */
+  padding: 10px 20px;
+  background-color: #005baa;
+  background-image: linear-gradient(45deg, #005baa, #1793ff);
+  color: #fff;
+  text-decoration: none;
+  border-radius: 5px;
+  /* margin-right: 10px; */
+  margin-bottom: 10px;
+}
+
+@media (max-width: 768px) {
+  .button {
+    margin-right: 0;
+    /* margin-left: 10px; */
+  }
+}
+
+.bg {
+  max-width: 100%;
+  height: auto;
+}
+
+@media (max-width: 768px) {
+  .header h1 {
+    font-size: 24px;
+  }
+
+  .swiper-slide {
+    text-align: center;
+  }
+}
+
 * {
   margin: 0;
   padding: 0;
@@ -32,19 +105,19 @@ main {
   opacity: 0;
 }
 
-main > div span {
+main>div span {
   text-transform: uppercase;
   letter-spacing: 1.5px;
   font-size: 1rem;
   color: #717171;
 }
 
-main > div h1 {
+main>div h4 {
   text-transform: capitalize;
   letter-spacing: 0.8px;
   font-family: "Roboto", sans-serif;
   font-weight: 900;
-  font-size: clamp(3.4375rem, 3.25rem + 0.75vw, 4rem);
+  font-size: clamp(3.4375rem, 0.3rem + 0.75vw, 1rem);
   background-color: #005baa;
   background-image: linear-gradient(45deg, #005baa, #000000);
   background-size: 100%;
@@ -55,7 +128,7 @@ main > div h1 {
   -moz-text-fill-color: transparent;
 }
 
-main > div hr {
+main>div hr {
   display: block;
   background: #005baa;
   height: 0.25rem;
@@ -64,7 +137,7 @@ main > div hr {
   margin: 1.125rem 0 1.875rem 0;
 }
 
-main > div p {
+main>div p {
   line-height: 1.6;
 }
 
@@ -79,20 +152,20 @@ main a {
   transition: 0.3s ease-in-out;
 }
 
-main > div > a {
+main>div>a {
   border: 2px solid #c2c2c2;
   margin-top: 2.188rem;
   padding: 0.625rem 1.875rem;
 }
 
-main > div > a:hover {
+main>div>a:hover {
   border: 0.125rem solid #005baa;
   color: #005baa;
 }
 
 .swiper {
   width: 100%;
-  padding-top: 3.125rem;
+  padding-top: 1.5rem;
 }
 
 .swiper-pagination-bullet,
@@ -159,15 +232,18 @@ main > div > a:hover {
 }
 
 .swiper-slide--one {
-  background: linear-gradient(to top, #0f2027, #203a4300, #2c536400), url("https://images.unsplash.com/photo-1628944682084-831f35256163?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687&q=80") no-repeat 50% 50%/cover;
+  background: linear-gradient(to top, #0f2027, #203a4300, #2c536400),
+    url("https://blogger.googleusercontent.com/img/a/AVvXsEhBmI6nq7hREERx2MLADi2BvSCvztuXQZ5CncISmLv6_xNNEB8rs7QE54gbRWNhRBJxS9tr2ODYV0wzp7AclOJxyFHMr6i_xHR3g0Z3T6dYYcI5ZJwASssX0V3bXunkYBrK5chUtCGeU9fbwu2eB_9J-evYpmuTe6HmsoMYCEkuAnwuy7r_MrBZzEsAxOk=w417-h675") no-repeat 50% 50%/cover;
 }
 
 .swiper-slide--two {
-  background: linear-gradient(to top, #0f2027, #203a4300, #2c536400), url("https://images.unsplash.com/photo-1515309025403-4b0184873cef?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=735&q=80") no-repeat 50% 50%/cover;
+  background: linear-gradient(to top, #0f2027, #203a4300, #2c536400),
+    url("https://blogger.googleusercontent.com/img/a/AVvXsEjQ8iHtjMOuP-D_Og84yPm-wFp8gtWsz-JBDbQiWixOZVCI9smwCETeh8jKd8LPryzkno8ni0IdvlNhwPGj8M8EauedlwQ6S7ZDieh81Cl67M4gIK5lvIxjZlvNMRdQT4IVBZ9dPAhzLue46NaRQQLzzyKOeS7QKmv7Hp7-WsawbHgESptP2vTnXUvMOCo=w396-h597") no-repeat 50% 50%/cover;
 }
 
 .swiper-slide--three {
-  background: linear-gradient(to top, #0f2027, #203a4300, #2c536400), url("https://images.unsplash.com/photo-1545671913-b89ac1b4ac10?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80") no-repeat 50% 50%/cover;
+  background: linear-gradient(to top, #0f2027, #203a4300, #2c536400),
+    url("https://blogger.googleusercontent.com/img/a/AVvXsEi_yl1EKYXWF4qqTT-PBZa5eQioivoCK02JU21Sk-3nWZlboGgIcb8gjv6Ou32nqBJQOJh1x5gPYW5bUCx6XZoAZyyPZyZkwoaCnAnlvM10wgUrDMhQqUNr2cT6d0ZIAPWS4DiI0mqExD0cySCxw0mkFnA4mA3OpSJTd1CX4e6xnYWig6R34Gi-HG593jM=w409-h603") no-repeat 50% 50%/cover;
 }
 
 .swiper-slide--four {
@@ -190,10 +266,11 @@ main > div > a:hover {
   }
 
   .bg,
-.bg2 {
+  .bg2 {
     opacity: 0.1;
   }
 }
+
 @media screen and (min-width: 93.75rem) {
   .swiper {
     width: 85%;

@@ -5,25 +5,87 @@
 /********* Fonts Face CSS End **********/
 
 /******* Common Element CSS Start ******/
+body {
+  font-size: 14px;
+  margin: 0;
+  padding: 0;
+  font-family: Arial, sans-serif;
+}
+
+.main-container {
+  padding: 0px;
+  margin-left: 10px;
+  margin-right: 10px;
+}
+
+.header {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.swiper-container {
+  width: 100%;
+  padding-top: 20px;
+}
+
+.slide-content {
+  padding: 20px;
+  background-color: #f5f5f5;
+  border-radius: 10px;
+  margin: 10px;
+}
+
+
+.button-container {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  margin-top: 20px;
+}
+
+.button {
+  /* display: inline-block; */
+  padding: 10px 20px;
+  background-color: #005baa;
+  background-image: linear-gradient(45deg, #005baa, #1793ff);
+  color: #fff;
+  text-decoration: none;
+  border-radius: 5px;
+  /* margin-right: 10px; */
+  margin-bottom: 10px;
+}
+
+@media (max-width: 768px) {
+  .button {
+    margin-right: 0;
+    /* margin-left: 10px; */
+  }
+}
+
 * {
   margin: 0px;
   padding: 0px;
 }
+
 body {
   font-family: "Roboto", sans-serif;
   font-size: 16px;
 }
+
 .clear {
   clear: both;
 }
+
 img {
   max-width: 100%;
   border: 0px;
 }
+
 ul,
 ol {
   list-style: none;
 }
+
 a {
   text-decoration: none;
   color: inherit;
@@ -31,6 +93,7 @@ a {
   transition: all 0.4s ease-in-out;
   -webkit-transition: all 0.4s ease-in-out;
 }
+
 a:focus,
 a:active,
 a:visited,
@@ -38,9 +101,11 @@ a:hover {
   text-decoration: none;
   outline: none;
 }
+
 a:hover {
   color: #e73700;
 }
+
 h2 {
   margin-bottom: 48px;
   padding-bottom: 16px;
@@ -50,14 +115,17 @@ h2 {
   position: relative;
   text-transform: capitalize;
 }
+
 h3 {
   margin: 0 0 10px;
   font-size: 28px;
   line-height: 36px;
 }
+
 button {
   outline: none !important;
 }
+
 /******* Common Element CSS End *********/
 
 /* -------- title style ------- */
@@ -65,6 +133,7 @@ button {
   position: relative;
   width: 400px;
 }
+
 .line-title::before,
 .line-title::after {
   content: "";
@@ -74,10 +143,12 @@ button {
   height: 4px;
   border-radius: 2px;
 }
+
 .line-title::before {
   width: 100%;
   background: #f2f2f2;
 }
+
 .line-title::after {
   width: 32px;
   background: #e73700;
@@ -88,11 +159,13 @@ button {
 .game-section {
   padding: 60px 50px;
 }
+
 .game-section .owl-stage {
   margin: 15px 0;
   display: flex;
   display: -webkit-flex;
 }
+
 .game-section .item {
   margin: 0 15px 60px;
   width: 320px;
@@ -109,11 +182,13 @@ button {
   -webkit-transition: all 0.4s ease-in-out;
   cursor: pointer;
 }
+
 .game-section .item.active {
   width: 500px;
   box-shadow: 12px 40px 40px rgba(0, 0, 0, 0.25);
   -webkit-box-shadow: 12px 40px 40px rgba(0, 0, 0, 0.25);
 }
+
 .game-section .item:after {
   content: "";
   display: block;
@@ -124,6 +199,7 @@ button {
   top: 0;
   background-image: linear-gradient(rgba(0, 0, 0, 0), rgba(0, 0, 0, 1));
 }
+
 .game-section .item-desc {
   padding: 0 24px 12px;
   color: #fff;
@@ -135,10 +211,12 @@ button {
   transition: all 0.4s ease-in-out;
   -webkit-transition: all 0.4s ease-in-out;
 }
+
 .game-section .item.active .item-desc {
   transform: none;
   -webkit-transform: none;
 }
+
 .game-section .item-desc p {
   opacity: 0;
   -webkit-transform: translateY(32px);
@@ -146,16 +224,19 @@ button {
   transition: all 0.4s ease-in-out 0.2s;
   -webkit-transition: all 0.4s ease-in-out 0.2s;
 }
+
 .game-section .item.active .item-desc p {
   opacity: 1;
   -webkit-transform: translateY(0);
   transform: translateY(0);
 }
+
 .game-section .owl-theme.custom-carousel .owl-dots {
   margin-top: -20px;
   position: relative;
   z-index: 5;
 }
+
 /******** Middle section CSS End *******/
 
 /***** responsive css Start ******/
@@ -164,6 +245,7 @@ button {
   h2 {
     margin-bottom: 32px;
   }
+
   h3 {
     margin: 0 0 8px;
     font-size: 24px;
@@ -172,16 +254,19 @@ button {
 
   /* -------- Landing page ------- */
   .game-section {
-    padding: 50px 30px;
+    padding: 5px 30px;
   }
+
   .game-section .item {
     margin: 0 12px 60px;
     width: 260px;
     height: 360px;
   }
+
   .game-section .item.active {
     width: 400px;
   }
+
   .game-section .item-desc {
     transform: translateY(calc(100% - 46px));
     -webkit-transform: translateY(calc(100% - 46px));
@@ -192,27 +277,32 @@ button {
   h2 {
     margin-bottom: 32px;
   }
+
   h3 {
     margin: 0 0 8px;
     font-size: 24px;
     line-height: 32px;
   }
+
   .line-title {
     width: 330px;
   }
 
   /* -------- Landing page ------- */
   .game-section {
-    padding: 50px 30px 40px;
+    padding: 5px 30px 40px;
   }
+
   .game-section .item {
     margin: 0 12px 60px;
     width: 240px;
     height: 330px;
   }
+
   .game-section .item.active {
     width: 360px;
   }
+
   .game-section .item-desc {
     transform: translateY(calc(100% - 42px));
     -webkit-transform: translateY(calc(100% - 42px));
@@ -223,32 +313,38 @@ button {
   body {
     font-size: 14px;
   }
+
   h2 {
     margin-bottom: 20px;
   }
+
   h3 {
     margin: 0 0 8px;
     font-size: 19px;
     line-height: 24px;
   }
+
   .line-title {
     width: 250px;
   }
 
   /* -------- Landing page ------- */
   .game-section {
-    padding: 30px 15px 20px;
+    padding: 5px 15px 20px;
   }
+
   .game-section .item {
     margin: 0 10px 40px;
     width: 200px;
     height: 280px;
   }
+
   .game-section .item.active {
     width: 270px;
     box-shadow: 6px 10px 10px rgba(0, 0, 0, 0.25);
     -webkit-box-shadow: 6px 10px 10px rgba(0, 0, 0, 0.25);
   }
+
   .game-section .item-desc {
     padding: 0 14px 5px;
     transform: translateY(calc(100% - 42px));
